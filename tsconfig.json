@@ -3,15 +3,19 @@
     "allowJs": false,
     "declaration": true,
     "declarationMap": true,
+    "esModuleInterop": true,
     "jsx": "react",
     "module": "commonjs",
+    "moduleResolution": "Node",
     "outDir": "lib",
     "target": "es6",
-    "sourceMap": true
+    "sourceMap": true,
+    "skipLibCheck": true
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx"
+  "files": [
+    "src/index.ts",
+    "src/utils.ts",
+    "src/components/pagination-links.tsx"
   ],
   "exclude": [
     "node_modules"

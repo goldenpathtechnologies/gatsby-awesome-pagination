@@ -4,57 +4,61 @@ import { Link } from "gatsby";
 const linkOrText = (
   label: string,
   link: string,
-  activeStyle: {},
-  inactiveStyle: {}
-): React.Node =>
+  activeStyle: { [key: string]: string } = {},
+  inactiveStyle: { [key: string]: string } = {},
+): JSX.Element => (
   link ? (
     <Link to={link} style={activeStyle}>
       {label}
     </Link>
   ) : (
     <span style={inactiveStyle}>{label}</span>
-  );
+  )
+);
 
 type PaginationLinksProps = {
   previousLabel?: string,
   nextLabel?: string,
   pageLabel?: string,
   separator?: string,
+  activeStyle?: { [key: string]: string },
+  inactiveStyle?: { [key: string]: string },
   pageContext: {
-    pageNumber: number,
     humanPageNumber: number,
-    skip: number,
-    limit: number,
-    numberOfPages: number,
     previousPagePath?: string,
-    nextPagePath?: string
+    nextPagePath?: string,
   }
 };
 
-export const PaginationLinks = ({
-  previousLabel = "← previous",
-  nextLabel = "next →",
-  pageLabel = "Page: %d",
-  separator = " - ",
-  activeStyle = {},
-  inactiveStyle = { textDecorationLine: "line-through", color: "grey" },
+export default function PaginationLinks({
+  previousLabel,
+  nextLabel,
+  pageLabel,
+  separator,
+  activeStyle,
+  inactiveStyle,
   pageContext: {
-    pageNumber,
     humanPageNumber,
-    skip,
-    limit,
-    numberOfPages,
     previousPagePath,
-    nextPagePath
-  }
-}: PaginationLinksProps): React.Node => {
+    nextPagePath,
+  },
+}: PaginationLinksProps): JSX.Element {
   return (
     <div className="has-text-centered">
       {linkOrText(previousLabel, previousPagePath, activeStyle, inactiveStyle)}
       {separator}
-      {pageLabel.replace("%d", humanPageNumber)}
+      {pageLabel.replace(`%d`, humanPageNumber.toString())}
       {separator}
       {linkOrText(nextLabel, nextPagePath)}
     </div>
   );
+}
+
+PaginationLinks.defaultProps = {
+  previousLabel: `← previous`,
+  nextLabel: `next →`,
+  pageLabel: `Page: %d`,
+  separator: ` - `,
+  activeStyle: {},
+  inactiveStyle: { textDecorationLine: `line-through`, color: `grey` },
 };
