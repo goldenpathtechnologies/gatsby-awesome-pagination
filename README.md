@@ -38,7 +38,7 @@ export const createPages: GatsbyNode["createPages"] = ({ graphql, actions }) => 
     createPage, // The Gatsby `createPage` function
     items: blogPosts, // An array of objects
     itemsPerPage: 10, // How many items you want per page
-    pathPrefix: '/blog', // Creates pages like `/blog`, `/blog/2`, etc
+    pathPrefix: '/blog', // Creates pages like `/blog/`, `/blog/2/`, etc
     component: path.resolve('...'), // Just like `createPage()`
   });
 };
@@ -60,7 +60,7 @@ export const pageQuery = graphql`
 `;
 ```
 
-Then inside your component, you can link to next / previous pages, and so on:
+Then inside your component, you can link to next/previous pages, and so on:
 
 ```tsx
 const BlogIndex = (props) => {
@@ -87,10 +87,10 @@ We differ from other pagination options as follows:
 
 * Don't abuse `context` to pass data into components
 * Pass only pagination context via `context`
-* Provide helpers for next / previous links
+* Provide helpers for next/previous links
 
 There are 2 types of pagination. You have 80 blog posts and you want to show
-them 15 at a time on pages like `/blog`, `/blog/2`, `/blog/3`, etc. You do this
+them 15 at a time on pages like `/blog/`, `/blog/2/`, `/blog/3/`, etc. You do this
 with `paginate()`. Then on each blog post, you want to link to the previous and
 next blog posts. You do this with `createPagePerItem()`.
 
@@ -128,6 +128,8 @@ In addition to the arguments above, `paginate()` also supports:
 * `itemsPerFirstPage` - An integer, how many items should be displayed on the **first** page
 * `pathPrefix`* - A (nonempty) string or string returning function, the path (eg `/blog`) to which `/2`, `/3`, etc will be added
 * `context` - A base context object which is extended with the pagination context values
+* `trailingSlash` - A flag that enables or disables a trailing slash at the end of paths (defaults to 
+  `true` which appends the trailing slash)
 
 Example:
 
@@ -138,8 +140,9 @@ paginate({
   items: blogPosts,
   itemsPerPage: 15,
   itemsPerFirstPage: 3,
-  pathPrefix: '/blog'
-})
+  pathPrefix: '/blog',
+  trailingSlash: false,
+});
 ```
 
 Each page's `context` automatically receives the following values:
@@ -165,7 +168,7 @@ const pathPrefix = ({ pageNumber, numberOfPages }) =>
   pageNumber === 0 ? '/blog' : '/blog/page'
 ```
 
-This example produces pages like `/blog`, `/blog/page/2`, `/blog/page/3`, etc.
+This example produces pages like `/blog/`, `/blog/page/2/`, `/blog/page/3/`, etc.
 
 ### `createPagePerItem()`
 
@@ -213,7 +216,8 @@ This library is best used with Gatsby version 4.9.0 and up, in a project that
 uses a `gatsby-node.ts` file. The primary motivation of this rewrite is to make
 type information readily available for those projects with stricter linting
 rules and type checks. Otherwise, [`gatsby-awesome-pagination`](https://github.com/GatsbyCentral/gatsby-awesome-pagination)
-is a good enough alternative if you don't care about type information.
+is a good enough alternative if you don't care about type information or trailing
+slashes at the end of your paths.
 
 This project will not receive direct changes upstream due to the extent of
 refactorings. Please open an issue if you would like updates of
