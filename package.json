@@ -1,12 +1,12 @@
 {
-  "name": "gatsby-awesome-pagination",
+  "name": "gatsby-awesome-pagination-ts",
   "version": "0.3.8",
-  "description": "An opinionated, more awesome approach to pagination in Gatsby",
+  "description": "An opinionated, more awesome approach to pagination in Gatsby, improved with TypeScript",
   "files": [
-    "lib"
+    "lib",
+    "CHANGELOG.md"
   ],
   "main": "lib/index.js",
-  "browser": "lib/components.js",
   "scripts": {
     "prepack": "npm run build",
     "build": "tsc --pretty",
@@ -16,18 +16,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/GatsbyCentral/gatsby-plugin-awesome-pagination.git"
+    "url": "git+https://github.com/goldenpathtechnologies/gatsby-awesome-pagination.git"
   },
   "bugs": {
-    "url": "https://github.com/GatsbyCentral/gatsby-plugin-awesome-pagination/issues"
+    "url": "https://github.com/goldenpathtechnologies/gatsby-awesome-pagination/issues"
   },
-  "homepage": "https://github.com/GatsbyCentral/gatsby-plugin-awesome-pagination#readme",
+  "homepage": "https://github.com/goldenpathtechnologies/gatsby-awesome-pagination#readme",
   "keywords": [
     "gatsby",
-    "gatsby-plugin",
     "pagination"
   ],
-  "author": "Callum Macdonald",
+  "author": "Daryl Wright",
+  "contributors": [
+    "Callum Macdonald"
+  ],
   "license": "MIT",
   "devDependencies": {
     "eslint-config-airbnb": "^19.0.4",
