@@ -1,12 +1,13 @@
 {
   "compilerOptions": {
     "allowJs": false,
+    "declaration": true,
+    "declarationMap": true,
     "esModuleInterop": true,
     "jsx": "react",
     "module": "commonjs",
     "moduleResolution": "Node",
-    "noEmit": true,
-    "pretty": true,
+    "outDir": "lib",
     "target": "es6",
     "sourceMap": true,
     "skipLibCheck": true
@@ -14,9 +15,7 @@
   "files": [
     "src/index.ts",
     "src/utils.ts",
-    "src/components/pagination-links.tsx",
-    "__tests__/index.ts",
-    "__tests__/utils.ts"
+    "src/components/pagination-links.tsx"
   ],
   "exclude": [
     "node_modules"
