@@ -1,9 +1,9 @@
-Awesome Pagination for Gatsby
+Awesome Pagination for Gatsby (TypeScript version)
 ---
 
-A sensible approach to pagination for Gatsby sites.
-
-Please post questions on StackOverflow, only bug reports are accepted via GitHub.
+A sensible approach to pagination for Gatsby sites. This project is a
+rewrite fork of [`gatsby-awesome-pagination`](https://github.com/GatsbyCentral/gatsby-awesome-pagination)
+in TypeScript that makes type information more available.
 
 ## Contents
 
@@ -15,19 +15,19 @@ Please post questions on StackOverflow, only bug reports are accepted via GitHub
 ## Quick start
 
 ```
-yarn add gatsby-awesome-pagination
+yarn add gatsby-awesome-pagination-ts
 ```
 
-Open `gatsby-node.js` and import:
+Open `gatsby-node.ts` (or `gatsby-node.js`) and import:
 
-```javascript
-import { paginate } from 'gatsby-awesome-pagination';
+```typescript
+import { paginate } from 'gatsby-awesome-pagination-ts';
 ```
 
 Then, use `paginate()` like so:
 
-```javascript
-exports.createPages = ({ actions, graphql }) => {
+```typescript
+export const createPages: GatsbyNode["createPages"] = ({ graphql, actions }) => {
   const { createPage } = actions;
 
   // Fetch your items (blog posts, categories, etc).
@@ -40,13 +40,13 @@ exports.createPages = ({ actions, graphql }) => {
     itemsPerPage: 10, // How many items you want per page
     pathPrefix: '/blog', // Creates pages like `/blog`, `/blog/2`, etc
     component: path.resolve('...'), // Just like `createPage()`
-  })
-}
+  });
+};
 ```
 
 Now in your page query you can use the pagination context like so:
 
-```javascript
+```typescript
 export const pageQuery = graphql`
   query ($skip: Int!, $limit: Int!) {
     allMarkdownRemark(
@@ -57,12 +57,12 @@ export const pageQuery = graphql`
       ...
     }
   }
-`
+`;
 ```
 
 Then inside your component, you can link to next / previous pages, and so on:
 
-```javascript
+```tsx
 const BlogIndex = (props) => {
   return (
     <div>
@@ -77,11 +77,11 @@ const BlogIndex = (props) => {
 }
 ```
 
-For a more detailed example, see [docs/examples.md](https://github.com/GatsbyCentral/gatsby-awesome-pagination/blob/master/docs/examples.md)
+For a more detailed example, see [docs/examples.md](https://github.com/goldenpathtechnologies/gatsby-awesome-pagination/blob/master/docs/examples.md).
 
 ## Introduction
 
-Love Gatsby, wanna paginate. Sweet, that's exactly what this package is for.
+Love Gatsby, wanna paginate? Sweet, that's exactly what this package is for.
 
 We differ from other pagination options as follows:
 
@@ -209,19 +209,24 @@ Each page's `context` automatically receives the following values:
 
 ## Notes
 
-### Flow
+This library is best used with Gatsby version 4.9.0 and up, in a project that
+uses a `gatsby-node.ts` file. The primary motivation of this rewrite is to make
+type information readily available for those projects with stricter linting
+rules and type checks. Otherwise, [`gatsby-awesome-pagination`](https://github.com/GatsbyCentral/gatsby-awesome-pagination)
+is a good enough alternative if you don't care about type information.
 
-This plugin is written using [flow](https://flow.org/). There are some
-limitations when using flow and [lodash](https://lodash.com/). Specifically
-[this issue](https://github.com/facebook/flow/issues/34). In many cases we use
-`$FlowExpectError` and explicitly define the type of something to workaround. A
-more elegant solution does not currently seem to exist. Any input on improving
-the typing is greatly appreciated in the plugin's issues.
+This project will not receive direct changes upstream due to the extent of
+refactorings. Please open an issue if you would like updates of
+`gatsby-awesome-pagination` to be included in this project.
 
 ### Contributors
 
 Thanks to the following for their contributions:
 
+* https://github.com/chmac
 * https://github.com/Pyrax
 * https://github.com/JesseSingleton
 * https://github.com/silvenon
+
+## License
+This project is MIT licensed.

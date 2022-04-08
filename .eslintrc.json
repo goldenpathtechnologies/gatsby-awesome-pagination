@@ -1,0 +1,38 @@
+{
+  "env": {
+    "browser": true,
+    "es2020": true,
+    "node": true
+  },
+  "extends": [
+    "plugin:react/recommended",
+    "airbnb",
+    "eslint:recommended",
+    "plugin:import/typescript",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 11,
+    "sourceType": "module"
+  },
+  "plugins": ["react", "@typescript-eslint"],
+  "rules": {
+    "import/extensions": "off",
+    "linebreak-style": "off",
+    "quotes": ["error", "backtick"],
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [".jsx", ".tsx"]
+      }
+    ],
+    "react/jsx-one-expression-per-line": "off",
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": "error"
+  }
+}
