@@ -1,6 +1,6 @@
 {
   "name": "gatsby-awesome-pagination-ts",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "An opinionated, more awesome approach to pagination in Gatsby, improved with TypeScript",
   "files": [
     "lib",
@@ -56,13 +56,16 @@
       "@semantic-release/changelog",
       "@semantic-release/npm",
       "@semantic-release/exec",
-      [ "@semantic-release/git", {
-        "assets": [
-          "package.json",
-          "CHANGELOG.md"
-        ],
-        "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
-      }]
+      [
+        "@semantic-release/git",
+        {
+          "assets": [
+            "package.json",
+            "CHANGELOG.md"
+          ],
+          "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+        }
+      ]
     ],
     "preset": "conventionalcommits",
     "parserOpts": {
