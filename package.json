@@ -56,7 +56,13 @@
       "@semantic-release/changelog",
       "@semantic-release/npm",
       "@semantic-release/exec",
-      "@semantic-release/git"
+      [ "@semantic-release/git", {
+        "assets": [
+          "package.json",
+          "CHANGELOG.md"
+        ],
+        "message": "chore(release): ${nextRelease.version}\n\n${nextRelease.notes}"
+      }]
     ],
     "preset": "conventionalcommits",
     "parserOpts": {
@@ -71,11 +77,6 @@
         "subject",
         "scope"
       ]
-    },
-    "assets": [
-      "package.json",
-      "CHANGELOG.md"
-    ],
-    "message": "chore(release): ${nextRelease.version}\n\n${nextRelease.notes}"
+    }
   }
 }
