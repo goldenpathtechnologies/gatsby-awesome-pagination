@@ -7,11 +7,14 @@ on:
     paths-ignore:
       - .gitignore
       - .gitattributes
+      - .eslintrc.json
+      - .prettierignore
+      - .prettierrc
       - CHANGELOG.md
-      - README.md
-      - LICENSE
       - CODE_OF_CONDUCT.md
-      - package.json
+      - LICENSE
+      - README.md
+      - tsconfig.json
     tags-ignore:
       - "**"
 
